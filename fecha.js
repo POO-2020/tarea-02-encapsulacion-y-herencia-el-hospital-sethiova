@@ -1,34 +1,34 @@
 export default class Fecha {
 
     constructor(fecha){
-        this.fecha = fecha
-        this.fechaActual = new Date
-        this.mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
-        this.dia = new Array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+        this._fecha = fecha
+        this._fechaActual = new Date
+        this._mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
+        this._dia = new Array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
     }
     getAños(){
-        return(`${this.fechaActual.getFullYear() - this.fecha.getFullYear()} años`)
+        return(`${this._fechaActual.getFullYear() - this._fecha.getFullYear()} años`)
 
     }
     getMeses(){
-        let mes = (this.fechaActual.getFullYear() - this.fecha.getFullYear()) * 12 + (this.fechaActual.getMonth())
+        let mes = (this._fechaActual.getFullYear() - this._fecha.getFullYear()) * 12 + (this._fechaActual.getMonth())
         return (`${mes} meses`)
     }
     getSemanas(){
-        let semana = (this.fechaActual.getFullYear() - this.fecha.getFullYear()) * 52 + ((this.fechaActual.getMonth()) * 4 + (Math.round((this.fechaActual.getDate()) / 7 )))
+        let semana = (this._fechaActual.getFullYear() - this._fecha.getFullYear()) * 52 + ((this._fechaActual.getMonth()) * 4 + (Math.round((this._fechaActual.getDate()) / 7 )))
         return(`${semana} semanas`)
 
     }
     getDias(){
-        let dia = (this.fechaActual.getFullYear() - this.fecha.getFullYear()) * 365 + ((this.fechaActual.getMonth()) * 30) 
+        let dia = (this._fechaActual.getFullYear() - this._fecha.getFullYear()) * 365 + ((this._fechaActual.getMonth()) * 30) 
         return(`${dia} dias`)
     }
     getFecha(){
-        let mes = this.mes[this.fecha.getMonth()]
-        return(`${this.fecha.getDate()}/${mes}/${this.fecha.getFullYear()}`)
+        let mes = this._mes[this._fecha.getMonth()]
+        return(`${this._fecha.getDate()}/${mes}/${this._fecha.getFullYear()}`)
     }
     getDiaFecha(){
-        let dia = this.dia[this.fecha.getDay()-1]
+        let dia = this._dia[this._fecha.getDay()-1]
         return(`Es el dia ${dia}`)
     }
 }

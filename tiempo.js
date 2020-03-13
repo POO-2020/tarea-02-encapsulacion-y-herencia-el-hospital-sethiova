@@ -6,24 +6,24 @@ export default class Tiempo {
      * @param {string} periodo 
      */
     constructor(fecha){
-        this.fecha = fecha
-        this.hora = this.fecha.getHours()
-        this.minutos = this.fecha.getMinutes()
-        this.periodo = new Array("Am","Pm")
+        this._fecha = fecha
+        this._hora = this._fecha.getHours()
+        this._minutos = this._fecha.getMinutes()
+        this._periodo = new Array("Am","Pm")
     }
     getFormato12(){
-        if (this.hora >= 12){
-            let hora = (`${this.hora - 12}:${this.minutos} ${this.periodo[1]}`)
+        if (this._hora >= 12){
+            let hora = (`${this._hora - 12}:${this._minutos} ${this._periodo[1]}`)
             return(`${hora}`)
         }
         else{
-            let hora = (`${this.hora}:${this.minutos} ${this.periodo[0]}`)
+            let hora = (`${this._hora}:${this._minutos} ${this._periodo[0]}`)
             return(`${hora}`)
         }
       
     }
     getFormato24(){
-        let hora = (`${this.hora}:${this.minutos}`)
+        let hora = (`${this._hora}:${this._minutos}`)
         return(`${hora}`)
     }
 }
