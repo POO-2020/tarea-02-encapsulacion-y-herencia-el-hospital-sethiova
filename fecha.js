@@ -1,34 +1,52 @@
-export default class Fecha {
-
+var glob
+export default class Fecha{
+    /**
+     * 
+     * @param {number} dia 
+     * @param {number} mes 
+     * @param {number} año 
+     */
+    
     constructor(fecha){
         this._fecha = fecha
-        this._fechaActual = new Date
-        this._mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
-        this._dia = new Array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+
+        this._diasSemana = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+
+        this._años = ["Enero","Febrero","Marzo", "Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+       
     }
     getAños(){
-        return(`${this._fechaActual.getFullYear() - this._fecha.getFullYear()} años`)
-
+        let añosTranscurridos 
+        añosTranscurridos = 2020 - this._fecha.getFullYear() 
+        glob = añosTranscurridos
+        return `${añosTranscurridos}`
     }
     getMeses(){
-        let mes = (this._fechaActual.getFullYear() - this._fecha.getFullYear()) * 12 + (this._fechaActual.getMonth())
-        return (`${mes} meses`)
+        let mesesTranscurridos
+        mesesTranscurridos = glob * 12
+        glob = mesesTranscurridos
+        return `${mesesTranscurridos}`
     }
     getSemanas(){
-        let semana = (this._fechaActual.getFullYear() - this._fecha.getFullYear()) * 52 + ((this._fechaActual.getMonth()) * 4 + (Math.round((this._fechaActual.getDate()) / 7 )))
-        return(`${semana} semanas`)
-
+        let semanasTranscurridas 
+        semanasTranscurridas = glob * 4
+        glob = semanasTranscurridas
+        return `${semanasTranscurridas}`
     }
     getDias(){
-        let dia = (this._fechaActual.getFullYear() - this._fecha.getFullYear()) * 365 + ((this._fechaActual.getMonth()) * 30) 
-        return(`${dia} dias`)
+        let diasTrasncurridos
+        diasTrasncurridos = glob * 7
+        glob = diasTrasncurridos
+        return `${diasTrasncurridos}`
     }
     getFecha(){
-        let mes = this._mes[this._fecha.getMonth()]
-        return(`${this._fecha.getDate()}/${mes}/${this._fecha.getFullYear()}`)
+        let mesDelAño
+        mesDelAño = this._años[this._fecha.getMonth()]
+        return `${this._fecha.getDate()}/${mesDelAño}/${this._fecha.getFullYear()}`
     }
     getDiaFecha(){
-        let dia = this._dia[this._fecha.getDay()-1]
-        return(`Es el dia ${dia}`)
+        let diaDeSemana
+        diaDeSemana = this._diasSemana[this._fecha.getDay()]
+        return `${diaDeSemana}`
     }
 }

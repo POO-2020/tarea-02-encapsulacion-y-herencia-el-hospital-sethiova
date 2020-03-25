@@ -1,38 +1,49 @@
-import Paciente from "./paciente.js";
-import Fecha from "./fecha.js";
-import Tiempo from "./tiempo.js";
-import Doctor from "./doctor.js";
-import Nombre from "./nombre.js";
-import Cita from "./cita.js";
+import Doctor from "./doctor.js"
+import Cita from "./cita.js"
 
-export default class Hospital {
-    /**
-     * 
-     * @param {string} nombre 
-     * @param {string} direccion 
-     * @param {Doctor} doctores | clase Doctor
-     * @param {Cita} citas | clase Cita
-     */
-    constructor(nombre, direccion){
-        this.nombre = nombre
-        this.direccion = direccion
-        this.doctores = new Array()
-        this.citas = new Array()
+export default class Hospital{
+    constructor({nombre, direccion}){
+        this._nombre = nombre
+        this._direccion = direccion
+        this._doctor = new Array()
+        this._cita = new Array()
     }
-    registrarDoctor(doctor){
-        this.doctores.push(doctor)
+    getRegistrarDoctor(doctor){
+        this._doctor.push(doctor)
     }
-    listarDoctores(){
-        this.doctores.forEach((doctor, i) =>{
-            console.log(`${i}.- ${doctor.getPerfil()}`)
+
+    getListarDoctores(){
+        this._doctor.forEach((doctor,i) => {
+            console.log(`No.- ${i + 1}: ${doctor.getPerfil()}`)
         })
     }
-    registrarCita(cita){
-    this.citas.push(cita)        
+
+    _encontrarIndiceDoctor(doctor){
+        let indice = this._doctor.findIndex((e => e.esIgualA(doctor)))
+        return indice
     }
-    listarCitas(){
-        this.citas.forEach((cita,i) => {
-            console.log(`${i}.- ${cita.getCita()}`)
+
+    _encontrarDoctor(doctor){
+        let indice = this._doctor.find((e => e.esIgualA(doctor)))
+        return indice
+    }
+
+    elimanr(doctor){
+        let indice = this._encontrarIndiceEstudiante(doctor)
+
+        if(indice < 0){
+            return false
+        }
+
+        this._doctor.splice(indice, 1)
+        return true
+    }
+    getRegistrarCitas(cita){
+        this._cita.push(cita)
+    }
+    getListarCitas(){
+        this._cita.forEach((cita,i) => {
+            console.log(`No.- ${i + 1}: ${cita.getCita()}`)
         })
     }
 }
